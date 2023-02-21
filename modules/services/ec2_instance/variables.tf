@@ -5,9 +5,6 @@ variable "ami_id" {
 variable "instance_type" {
   type    = string
 }
-variable "key_name" {
-  description = "Name of the key pair, which was created in aws console"
-}
 
 
 variable "sg_ports" {
