@@ -4,18 +4,36 @@ module "iam_role_create" {
 }
 
 module "sec_group" {
-  source       = "../modules/services/sec_group"
-  cluster_name = "staging-cluster"
-  sg_ports     = [80, 22]
+  source   = "../modules/services/sec_group"
+  sg_name  = "staging-cluster-sg"
+  sg_ports = [80, 22]
 
 }
 
 
 module "key_pairs" {
-  source       = "../modules/services/key_pairs"
+  source = "../modules/services/key_pairs"
 
 }
 
+module "lb_sec_group" {
+  source   = "../modules/services/sec_group"
+  sg_name  = "lb-sg"
+  sg_ports = [80]
+
+}
+module "lb" {
+  tg_port         = 80
+  tg_protocol     = "HTTP"
+  vpc_id          = module.lb_sec_group.sec_group_vpc_id
+  lb_sec_group_id = module.lb_sec_group.sec_group_id
+  cluster_name    = "staging-cluster"
+  depends_on = [
+    module.lb_sec_group
+  ]
+  source = "../modules/services/load_balancer"
+
+}
 
 
 module "ec2_instance" {
@@ -31,6 +49,9 @@ module "ec2_instance" {
   ebs_az        = "eu-central-1a"
   role_name     = module.iam_role_create.role_name
   k_name        = module.key_pairs.k_name
+  tg_attach     = true
+  tg_arn = module.lb.target_g_arn
+
   depends_on = [
     module.iam_role_create, module.sec_group, module.key_pairs
   ]

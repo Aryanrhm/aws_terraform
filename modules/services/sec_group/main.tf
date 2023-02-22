@@ -1,5 +1,5 @@
 resource "aws_security_group" "ec2_instance-sg" {
-  name        = "${var.cluster_name}-sg"
+  name        = "${var.sg_name}-sg"
   description = "ingress for ec2 instance"
   dynamic "ingress" {
     for_each = var.sg_ports

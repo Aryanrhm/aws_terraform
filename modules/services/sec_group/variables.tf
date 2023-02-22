@@ -3,7 +3,7 @@ variable "sg_ports" {
   description = "list of ingress ports"
 }
 
-variable "cluster_name" {
-  description = "The name to use for all the cluster resources"
+variable "sg_name" {
+  description = "The name to use for the Security Group Resource"
   type        = string
 }

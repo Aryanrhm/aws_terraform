@@ -13,6 +13,17 @@ variable "cluster_name" {
 }
 
 
+variable "tg_arn" {
+  description = "The arn of Target Group to attach the ec2 instance to"
+  type        = string
+}
+
+variable "tg_attach"{
+  type = bool
+  description = "To attach the ec2 instance to a Target Group"
+  default = false
+}
+
 variable "k_name" {
   description = "The name of key to use for the ec2 instance"
   type        = string
