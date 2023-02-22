@@ -12,13 +12,10 @@ module "eip" {
 
 
 resource "aws_instance" "ec2_instance_server" {
-  depends_on = [
-    aws_security_group.ec2_instance-sg
-  ]
   ami                  = var.ami_id
   instance_type        = var.instance_type
-  key_name             = aws_key_pair.my-key.key_name
-  vpc_security_group_ids = ["${aws_security_group.ec2_instance-sg.id}"]
+  key_name             = var.k_name
+  vpc_security_group_ids = ["${var.sec_group_id}"]
   iam_instance_profile = aws_iam_instance_profile.ec2_instance-profile.name
   hibernation = var.hibernate ### The 4 following lines are needed to enable the hibernation in the instance.
   root_block_device {

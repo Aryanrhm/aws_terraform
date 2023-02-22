@@ -5,7 +5,7 @@ resource "tls_private_key" "my-p-key" {
 }
 
 # locally store
-resource "local_file" "web" {
+resource "local_file" "pri_key" {
     content     = tls_private_key.my-p-key.public_key_openssh
     filename = "mykey.pem"
     //file_permission = 0400

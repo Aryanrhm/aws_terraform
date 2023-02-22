@@ -7,13 +7,14 @@ variable "instance_type" {
 }
 
 
-variable "sg_ports" {
-  type        = list(any)
-  description = "list of ingress ports"
-}
-
 variable "cluster_name" {
   description = "The name to use for all the cluster resources"
+  type        = string
+}
+
+
+variable "k_name" {
+  description = "The name of key to use for the ec2 instance"
   type        = string
 }
 
@@ -22,6 +23,12 @@ variable "eip" {
   type        = bool
   default = false
 }
+
+variable "sec_group_id" {
+  description = "The ID of created Security Group"
+  type        = string
+}
+
 
 variable "ebs_size" {
   description = "The size of attached ebs"

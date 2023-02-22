@@ -1,23 +1,38 @@
 module "iam_role_create" {
   source       = "../modules/services/iam_role_create"
   cluster_name = "staging-cluster"
+}
+
+module "sec_group" {
+  source       = "../modules/services/sec_group"
+  cluster_name = "staging-cluster"
+  sg_ports     = [80, 22]
 
 }
 
+
+module "key_pairs" {
+  source       = "../modules/services/key_pairs"
+
+}
+
+
+
 module "ec2_instance" {
-  count = 3
+  count         = 3
   cluster_name  = "staging-cluster-${count.index}"
   source        = "../modules/services/ec2_instance"
   ami_id        = "ami-0c0d3776ef525d5dd"
   instance_type = "t2.micro"
-  sg_ports      = [80, 22, 2049]
   eip           = false
   extra_ebs     = false
   ebs_size      = 2
+  sec_group_id  = module.sec_group.sec_group_id
   ebs_az        = "eu-central-1a"
   role_name     = module.iam_role_create.role_name
+  k_name        = module.key_pairs.k_name
   depends_on = [
-    module.iam_role_create
+    module.iam_role_create, module.sec_group, module.key_pairs
   ]
 }
 
