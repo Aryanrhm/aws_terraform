@@ -51,3 +51,8 @@ variable "root_block_encrypt" {
   type        = bool
   default = false
 }
+
+variable "role_name" {
+  description = "The name of role to create the instance profile"
+  type        = string
+}
