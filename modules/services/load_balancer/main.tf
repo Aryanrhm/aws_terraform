@@ -7,6 +7,9 @@ data "aws_subnets" "sns" {
 }
  
 data "aws_subnet" "sn" {
+  depends_on = [
+    data.aws_subnets.sns
+  ]
   for_each = toset(data.aws_subnets.sns.ids)
   id       = each.value
 }

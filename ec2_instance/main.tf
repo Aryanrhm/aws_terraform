@@ -29,7 +29,7 @@ module "lb" {
   lb_sec_group_id = module.lb_sec_group.sec_group_id
   cluster_name    = "staging-cluster"
   depends_on = [
-    module.lb_sec_group
+    module.lb_sec_group 
   ]
   source = "../modules/services/load_balancer"
 
