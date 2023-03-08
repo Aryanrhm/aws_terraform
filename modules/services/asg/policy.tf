@@ -1,4 +1,4 @@
-resource "aws_autoscaling_policy" "example" {
+resource "aws_autoscaling_policy" "autoscaling_policy" {
   name = "asg_policy"
   policy_type = "TargetTrackingScaling"
   adjustment_type        = "ChangeInCapacity"

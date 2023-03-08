@@ -1,6 +1,6 @@
 
-resource "aws_launch_configuration" "as_conf" {
-  name_prefix   = "${var.cluster_name}-asg-instance"
+resource "aws_launch_configuration" "launch_config" {
+  name_prefix   = "${var.name}-asg-instance"
   image_id = var.image_id
   instance_type = var.instance_type
   key_name = var.key_name
@@ -12,7 +12,7 @@ resource "aws_launch_configuration" "as_conf" {
 
 resource "aws_autoscaling_group" "asg" {
   name                 = var.name
-  launch_configuration = aws_launch_configuration.as_conf.name
+  launch_configuration = aws_launch_configuration.launch_config.name
   min_size             = var.min_size
   max_size             = var.max_size
   desired_capacity = var.desired_capacity

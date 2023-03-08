@@ -1,62 +1,29 @@
-variable "ami_id" {
-  type        = string
-  description = "The ami_id of our instance"
-}
-variable "instance_type" {
-  type    = string
-}
-
-
-variable "cluster_name" {
+variable "name" {
   description = "The name to use for all the cluster resources"
   type        = string
 }
 
+##### ec2 #####
 
-variable "tg_arn" {
-  description = "The arn of Target Group to attach the ec2 instance to"
+variable "sg_id" {
+  description = "The ID of created Security Group to assign to instance"
   type        = string
 }
 
-variable "tg_attach"{
-  type = bool
-  description = "To attach the ec2 instance to a Target Group"
-  default = false
-}
-
-variable "k_name" {
+variable "key_name" {
   description = "The name of key to use for the ec2 instance"
   type        = string
 }
 
-variable "eip" {
-  description = "Adding an Elastic IP for the instance"
-  type        = bool
-  default = false
-}
 
-variable "sec_group_id" {
-  description = "The ID of created Security Group"
+variable "ami_id" {
   type        = string
+  description = "The ami_id of created instance"
 }
 
-
-variable "ebs_size" {
-  description = "The size of attached ebs"
-  type        = number
+variable "instance_type" {
+  type    = string
 }
-
-variable "ebs_az" {
-  description = "The az of ebs volume"
-  type        = string
-}
-
-variable "extra_ebs" {
-  description = "Adding an extra ebs volume for the instance"
-  type        = bool
-  default = false
-}
-
 
 variable "hibernate" {
   description = "Add the hibernation ability to the instance, which the root_block_encryption should be enabled either"
@@ -69,6 +36,52 @@ variable "root_block_encrypt" {
   type        = bool
   default = false
 }
+
+# Target group
+
+variable "tg_attach"{
+  type = bool
+  description = "To attach the ec2 instance to a Target Group"
+  default = false
+}
+
+variable "tg_arn" {
+  description = "The arn of Target Group to attach the ec2 instance to"
+  type        = string
+}
+
+variable "tg_port" {
+  type = number
+  description = "The port on which targets receive traffic"
+}
+
+##### Elastic IP #####
+
+variable "eip" {
+  description = "Adding an Elastic IP for the instance"
+  type        = bool
+  default = false
+}
+
+##### Elastic Block Storage ####
+
+variable "extra_ebs" {
+  description = "Adding an extra ebs volume for the instance"
+  type        = bool
+  default = false
+}
+
+variable "ebs_size" {
+  description = "The size of attached ebs"
+  type        = number
+}
+
+variable "ebs_az" {
+  description = "The az of ebs volume"
+  type        = string
+}
+
+##### Instance Profile #####
 
 variable "role_name" {
   description = "The name of role to create the instance profile"

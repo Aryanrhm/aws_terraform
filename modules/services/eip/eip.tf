@@ -1,4 +1,4 @@
-resource "aws_eip" "assoc_eip_eip" {
+resource "aws_eip" "eip" {
   tags = {
     "Created_By" = "Terraform"
   }
