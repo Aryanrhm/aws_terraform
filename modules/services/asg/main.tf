@@ -14,8 +14,8 @@ resource "aws_autoscaling_group" "asg" {
   name                 = "terraform-asg-example"
   launch_configuration = aws_launch_configuration.as_conf.name
   min_size             = 1
-  max_size             = 3
-  desired_capacity = 2
+  max_size             = 2
+  desired_capacity = 1
   availability_zones = [ "eu-central-1c","eu-central-1a","eu-central-1b" ]
   target_group_arns = [ "${var.tg_arn}" ]
   health_check_type = "ELB"

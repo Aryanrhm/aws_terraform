@@ -26,6 +26,7 @@ resource "aws_instance" "ec2_instance_server" {
     Name       = "${var.cluster_name}-instance" # The name of instance is given like this. Why? I don't know either.
   }
   user_data = "${file("./user-data.sh")}"
+  
 
 }
   

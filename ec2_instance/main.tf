@@ -63,7 +63,7 @@ module "ec2_instance" {
 #     module.ec2_instance
 #   ]
 #   cluster_name = "staging-cluster"
-#   source       = "../modules/services/efs"
+#   source       = "../modules/storages/efs"
 
 # }
 
@@ -71,7 +71,7 @@ module "ec2_instance" {
 #   depends_on = [
 #     module.efs, module.ec2_instance
 #   ]
-#   source           = "../modules/services/efs_mount"
+#   source           = "../modules/storages/efs_mount"
 #   efs_id           = module.efs.fs_id
 #   efs_subnet_id    = module.ec2_instance.ec2_subnet_id
 #   sg_id            = module.ec2_instance.sg_id
