@@ -11,7 +11,7 @@ resource "null_resource" "efs_install" {
   ]
  connection {
     type     = "ssh"
-    user     = ${var.ssh_user}
+    user     = "${var.ssh_user}"
     private_key = var.ec2_instance_key
     host     = var.ec2_instance_ip
   }
