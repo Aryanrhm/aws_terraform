@@ -6,7 +6,7 @@ module "ebs_volume" {
   }
 
 module "eip" {
-  source = "git::https://github.com/Aryanrhm/aws-terraform-modules.git//services/eip/"
+  source = "git::https://github.com/Aryanrhm/aws-terraform-modules.git//services/elastic_ip/"
   count    =  var.eip == true ? 1 : 0
   }
 
