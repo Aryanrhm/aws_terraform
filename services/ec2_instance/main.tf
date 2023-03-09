@@ -1,12 +1,12 @@
 module "ebs_volume" {
-  source = "../../storages/ebs_volume"
+  source = "git::https://github.com/Aryanrhm/aws-terraform-modules.git//storages/ebs_volume/"
   count    =  var.extra_ebs == true ? 1 : 0
   ebs_size = var.ebs_size
   ebs_az = var.ebs_az
   }
 
 module "eip" {
-  source = "../eip"
+  source = "git::https://github.com/Aryanrhm/aws-terraform-modules.git//services/eip/"
   count    =  var.eip == true ? 1 : 0
   }
 

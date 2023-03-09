@@ -77,8 +77,13 @@ variable "ebs_size" {
 }
 
 variable "ebs_az" {
-  description = "The az of ebs volume"
+  description = "The Availablity Zone of ebs volume"
   type        = string
+}
+
+variable "ebs_device_name" {
+  description = "The ebs device name to expose to the instance"
+  type = string
 }
 
 ##### Instance Profile #####
