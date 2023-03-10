@@ -5,6 +5,17 @@ variable "name" {
 
 ##### ec2 #####
 
+variable "user_data" {
+  type = bool
+  description = "To specify a user data file for the instance"
+}
+
+variable "user_data_path" {
+  description = "If the user_data is true, this variable will be used to specify the path of user file."
+  type = string
+  default = "./user-data.sh"
+}
+
 variable "sg_id" {
   description = "The ID of created Security Group to assign to instance"
   type        = string
@@ -15,6 +26,10 @@ variable "key_name" {
   type        = string
 }
 
+variable "pem_file_name" {
+  description = "The name of pem file which would be created locally"
+  type        = string
+}
 
 variable "ami_id" {
   type        = string
@@ -37,7 +52,7 @@ variable "root_block_encrypt" {
   default = false
 }
 
-# Target group
+#### Target group ####
 
 variable "tg_attach"{
   type = bool

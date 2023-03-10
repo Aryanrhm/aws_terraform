@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_role" {
-  name = "${var.cluster_name}-iam-role"
+  name = "${var.name}-iam-role"
 
   assume_role_policy = <<EOF
 {
