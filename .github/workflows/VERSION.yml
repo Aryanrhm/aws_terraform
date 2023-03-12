@@ -24,3 +24,12 @@ jobs:
           minor_pattern: "feat:"
           version_format: "v${major}.${minor}.${patch}-prerelease${increment}"
           
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          tag_name: ${{ steps.versioning.outputs.version }}
+          release_name: ${{ steps.versioning.outputs.version }}
+          prerelease: true
