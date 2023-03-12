@@ -22,7 +22,8 @@ jobs:
           tag_prefix: "v"
           major_pattern: "BREAKING CHANGE:"
           minor_pattern: "feat:"
-          version_format: "v${major}.${minor}.${patch}-prerelease${increment}"
+          version_format: "v${major}.${minor}.${patch}"
+          bump_each_commit: true
           
       - name: Create Release
         id: create_release
