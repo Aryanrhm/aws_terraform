@@ -14,6 +14,7 @@ The following modules are currently included in this repository:
   * Load Balancer
   * Placement Group
   * Security Group
+  * CloudFront
 * Databases
   * RDS database
   * ElastiCache
